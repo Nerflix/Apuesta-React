@@ -1,10 +1,7 @@
-import React, {SetStateAction, useState} from "react";
+import {SetStateAction, useState} from "react";
 import {useTranslation} from "react-i18next";
-import Login from "./Login.tsx";
-import Signup from "./Signup.tsx";
 import SettledBets from "./SettledBets.tsx";
 import OpenBets from "./OpenBets.tsx";
-import {act} from "react-dom/test-utils";
 import BetSlip from "./BetSlip.tsx";
 
 const MyBets = () => {

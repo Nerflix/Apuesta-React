@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from "react-i18next"; // Import useTranslation from react-i18next
 import GlobeIcon from "./GlobeIcon.tsx";
 import i18net from 'i18next';
@@ -203,7 +203,7 @@ const Languages = [
 const LanguageSelector = () => {
 const currentLanguageCode= cookies.get('i18next') || 'en'
 const currentLanguage = Languages.find(l => l.code === currentLanguageCode)
-const { t, i18n } = useTranslation(); // Initialize the t function
+const { t } = useTranslation(); // Initialize the t function
   useEffect(() => {
     document.body.dir = currentLanguage.dir || 'ltr'
     document.title= t('Betvista')

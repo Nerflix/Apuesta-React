@@ -7,7 +7,6 @@ const auth = getAuth(app);
 const Login = () => {
   const [email, setEmail] = useState("");
   const [passw, setPassw] = useState("");
-  const [dataInput, setDataInput] = useState("");
 
   const submitThis = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,7 +15,6 @@ const Login = () => {
       alert("please fill all the fields");
       console.log('please fill al the ');
     } else {
-      setDataInput([info]);
       setPersistence(auth, browserSessionPersistence)
           .then(() => {
             return signInWithEmailAndPassword(auth, info.email, info.passw);
@@ -28,8 +26,7 @@ const Login = () => {
             // ...
           })
           .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            console.error("Error signing in:", error);
           });
 
     }

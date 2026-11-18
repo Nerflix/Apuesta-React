@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import NavBar from "../components/NavBar.tsx";
 import FixtureList from "../Data/FixtureList.tsx";
 import MainBets from "../components/MainBets.tsx";

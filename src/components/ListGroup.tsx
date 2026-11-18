@@ -1,4 +1,3 @@
-import FixtureList from "../Data/FixtureList.tsx";
 
 const ListGroup = () => {
   return (

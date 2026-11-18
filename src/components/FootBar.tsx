@@ -1,48 +1,13 @@
-import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import LanguageSelector from "../pages/LanguageSelector.tsx";
 import { useTranslation } from "react-i18next";
-import { app } from "../../public/firebase.tsx";
-import { getAuth, signOut } from "firebase/auth";
 import {AiFillHome} from "react-icons/ai";
-import {MdLiveTv} from "react-icons/md";
 import {RiPagesLine} from "react-icons/ri";
 import {IoMdContact} from "react-icons/io";
 import {BiFootball} from "react-icons/bi";
 
 
-const auth = getAuth(app);
-
-
-
 const FootBar = () => {
     const { t } = useTranslation(); // Initialize the t function
-    const [user, setUser] = useState(null);
-    useEffect(() => {
-        // Add an authentication state change listener
-        const unsubscribe = auth.onAuthStateChanged((authUser) => {
-            if (authUser) {
-                // User is signed in
-                setUser(authUser);
-            } else {
-                // User is signed out
-                setUser(null);
-            }
-        });
-
-        // Cleanup the listener when the component unmounts
-        return () => unsubscribe();
-    }, []);
-
-    const handleSignOut = () => {
-        signOut(auth) // Call the signOut method to log the user out
-            .then(() => {
-                // Handle the sign-out success, if needed
-            })
-            .catch((error) => {
-                // Handle sign-out errors, if any
-            });
-    };
     const iconStyle = { color: 'white' };
     const iconSize = 25;
     const textStyle = { fontSize: '12px', color: 'white' };

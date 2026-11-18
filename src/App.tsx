@@ -1,12 +1,11 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import i18n from "i18next";
 import Home from "./pages/Home.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
-import Live from "./pages/live.tsx"; // Corrected the filename to "Live.tsx"
+import Live from "./pages/live.tsx";
 import LanguageSelector from "./pages/LanguageSelector.tsx"
-import { useTranslation, initReactI18next } from "react-i18next";
+import { initReactI18next } from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-locize-backend';
 
@@ -15,7 +14,6 @@ import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
-import MyBets from "./components/MyBets.tsx";
 import MyBetsMain from "./pages/MyBetsMain.tsx"; /*npm install flag-icons*/
 
 
@@ -42,7 +40,6 @@ i18n
 
 function App() {
   i18n.loadResources();
-  const { t } = useTranslation();
 
   return (
     <Router>

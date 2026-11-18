@@ -7,7 +7,7 @@ import LanguageSelector from '../pages/LanguageSelector.tsx'
 import { BiMenu } from "react-icons/bi";
 import FixtureList from "../Data/FixtureList.tsx"
 import { app } from "../../public/firebase.tsx";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, type User } from "firebase/auth";
 
 
 const auth = getAuth(app);
@@ -16,7 +16,7 @@ function NavBar() {
   const [activeTab, setActiveTab] = useState("login");
   const { t } = useTranslation(); // Initialize the t function
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     // Add an authentication state change listener
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -34,13 +34,9 @@ function NavBar() {
   }, []);
 
   const handleSignOut = () => {
-    signOut(auth) // Call the signOut method to log the user out
-        .then(() => {
-          // Handle the sign-out success, if needed
-        })
-        .catch((error) => {
-          // Handle sign-out errors, if any
-        });
+    signOut(auth).catch((error) => {
+      console.error("Error signing out:", error);
+    });
   };
 
   const handleTabClick = (tabName: SetStateAction<string>) => {

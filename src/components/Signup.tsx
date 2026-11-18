@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 import { app } from "../../public/firebase.tsx";
@@ -30,7 +30,7 @@ const registerWithEmailAndPassword = async (info: {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    alert(err instanceof Error ? err.message : "Unable to sign up.");
   }
 };
 
@@ -40,8 +40,7 @@ const Signup = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [confirmpassw, setConfirmpassw] = useState("");
-  const [dataInput, setDataInput] = useState("");
-  const submitThis = (e) => {
+  const submitThis = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const info = {
       email: email,
@@ -53,7 +52,6 @@ const Signup = () => {
     if (email === "" || passw === "") {
       console.log("empty");
     } else {
-      setDataInput([info]);
       registerWithEmailAndPassword(info);
       console.log(email);
     }

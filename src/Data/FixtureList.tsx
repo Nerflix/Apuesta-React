@@ -3,10 +3,9 @@ import { getDatabase, ref, get } from "firebase/database";
 import { app } from "../../public/firebase.tsx";
 
 const database = getDatabase(app);
-let countryNames = null;
 
 function FixtureList() {
-  const [data, setData] = useState(null);
+  const [countryNames, setCountryNames] = useState<string[]>([]);
 
   useEffect(() => {
     // Reference the root of your database
@@ -18,11 +17,7 @@ function FixtureList() {
         if (snapshot.exists()) {
           // The data exists, you can access it as a JavaScript object
           const fetchedData = snapshot.val();
-          setData(fetchedData.leagues);
-          countryNames = Object.keys(fetchedData.leagues);
-          countryNames.forEach((countryName) => {
-            console.log(countryName);
-          });
+          setCountryNames(Object.keys(fetchedData.leagues ?? {}));
         } else {
           console.log("No data available.");
         }
@@ -38,7 +33,7 @@ function FixtureList() {
     <div className="col ">
       <h4>Top Leagues</h4>
       <ul className="list-group list-group-flush justify-content-center">
-        {countryNames ? (
+        {countryNames.length > 0 ? (
           countryNames.map((countryName, index) => (
             <li
               key={countryName}
